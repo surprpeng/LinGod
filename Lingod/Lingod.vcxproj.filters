@@ -27,9 +27,15 @@
     <ClInclude Include="src\Lingod\EnterPiont.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lingod\log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lingod\Application.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lingod\log.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

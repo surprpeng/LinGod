@@ -1,0 +1,3 @@
+[submodule "Lingod/vendor/spdlog"]
+	path = Lingod/vendor/spdlog
+	url = https://github.com/gabime/spdlog
