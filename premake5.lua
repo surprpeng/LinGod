@@ -9,11 +9,18 @@
 			}
 		
 			outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}" 
-		
+			IncludeDir = {}
+			IncludeDir["GLFW"] = "Lingod/vendor/GLFW/include"
+
+			include "Lingod/vendor/GLFW"
+
+
 		project "Lingod"          
 			location "Lingod"     
-			kind "SharedLib"	 
-			language "C++"		 
+			kind "SharedLib" 
+			language "C++"		
+			cppdialect "C++17"
+			staticruntime "on"
 
 			targetdir ("bin/" .. outputdir .. "/%{prj.name}")      
 			objdir ("bin-int/" .. outputdir .. "/%{prj.name}")	
@@ -31,12 +38,22 @@
 			includedirs       
 			{
 				"%{prj.name}/vendor/spdlog/include",
-				"%{prj.name}/src"
+				"%{prj.name}/src",
+				"%{IncludeDir.GLFW}"
 			}
+
+
+			links
+			{
+				"GLFW",
+				"opengl32.lib"
+			}
+
+
 
 			filter "system:windows"   
 				cppdialect "C++17"    
-				staticruntime "On"    
+				staticruntime "on"    
 				systemversion "10.0"  
 
 				defines               
@@ -93,7 +110,7 @@ project "Sandbox"
 			}
 			filter "system:windows"   
 				cppdialect "C++17"    
-				staticruntime "On"    
+				staticruntime "on"    
 				systemversion"10.0"  
 
 				defines              

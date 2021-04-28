@@ -11,3 +11,15 @@
 
 
 #define BIT(x)  (1<<x)
+
+
+// ASSERTION
+#ifdef LG_ENABLE_ASSERTS
+		#ifdef LG_PLATFORM_WINDOWS
+		#define LG_ASSERT(x,...) {if (!(x)) { LG_ERROR("Assertion Failed! {0}", __VA_ARGS__); __debugbreak(); } }
+		#define LG_CORE_ASSERT(x,...) {if (!(x)) { LG_CORE_ERROR("Assertion Failed! {0}", __VA_ARGS__); __debugbreak(); } }
+#endif
+#else
+		#define LG_ASSERT(x,...)
+		#define LG_CORE_ASSERT(x,...)
+#endif

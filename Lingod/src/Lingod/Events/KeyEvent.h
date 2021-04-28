@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Lingod/Events/Event.h"
-
+#include "Lingod/KeyCodes.h"
+#include "Lingod/MouseCodes.h"
 namespace Lingod {
 
 	class KeyEvent : public Event

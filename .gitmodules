@@ -1,3 +1,6 @@
 [submodule "Lingod/vendor/spdlog"]
 	path = Lingod/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Lingod/vendor/GLFW"]
+	path = Lingod/vendor/GLFW
+	url = https://github.com/TheCherno/glfw
