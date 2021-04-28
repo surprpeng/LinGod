@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Events">
-      <UniqueIdentifier>{3A8963B1-262B-8E87-0FE6-A1DBFB2615D8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Lingod">
       <UniqueIdentifier>{0238D1C0-EED9-FB96-D794-0FEBC3D582E7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lingod\Events">
+      <UniqueIdentifier>{A68D3B96-124E-B7CC-DB88-004A4708FCA8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Events\ApplicationEvent.h">
-      <Filter>Events</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Events\Event.h">
-      <Filter>Events</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Events\KeyEvent.h">
-      <Filter>Events</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Events\MouseEvent.h">
-      <Filter>Events</Filter>
-    </ClInclude>
     <ClInclude Include="src\Lingod.h" />
     <ClInclude Include="src\Lingod\Application.h">
       <Filter>Lingod</Filter>
@@ -31,9 +19,22 @@
     <ClInclude Include="src\Lingod\EnterPiont.h">
       <Filter>Lingod</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lingod\Events\ApplicationEvent.h">
+      <Filter>Lingod\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lingod\Events\Event.h">
+      <Filter>Lingod\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lingod\Events\KeyEvent.h">
+      <Filter>Lingod\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lingod\Events\MouseEvent.h">
+      <Filter>Lingod\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Lingod\log.h">
       <Filter>Lingod</Filter>
     </ClInclude>
+    <ClInclude Include="src\lgpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lingod\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\Lingod\log.cpp">
       <Filter>Lingod</Filter>
     </ClCompile>
+    <ClCompile Include="src\lgpch.cpp" />
   </ItemGroup>
 </Project>

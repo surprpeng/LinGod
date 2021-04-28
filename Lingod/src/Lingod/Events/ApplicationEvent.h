@@ -1,8 +1,8 @@
 #pragma once
+#include "lgpch.h"
+#include "Lingod/Events/Event.h"
 
-#include "Hazel/Events/Event.h"
-
-namespace Hazel {
+namespace Lingod {
 
 	class WindowResizeEvent : public Event
 	{

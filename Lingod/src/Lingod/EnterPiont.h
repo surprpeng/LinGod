@@ -1,7 +1,6 @@
 #pragma once
 #include "log.h"
 
-
 #ifdef LG_PLAYFORM_WINDOWS
 	//extern Lingod::Application* Lingod::CreateApplication();
 

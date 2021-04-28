@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Hazel/Events/Event.h"
-#include "Hazel/Core/KeyCodes.h"
+#include "Lingod/Events/Event.h"
 
-namespace Hazel {
+namespace Lingod {
 
 	class KeyEvent : public Event
 	{

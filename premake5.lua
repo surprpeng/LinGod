@@ -18,6 +18,9 @@
 			targetdir ("bin/" .. outputdir .. "/%{prj.name}")      
 			objdir ("bin-int/" .. outputdir .. "/%{prj.name}")	
 
+			pchheader "lgpch.h"
+			pchsource "Lingod/src/lgpch.cpp"
+
 			files               
 			{
 				"%{prj.name}/src/**.h",

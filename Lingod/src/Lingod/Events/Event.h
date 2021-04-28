@@ -1,6 +1,5 @@
 #pragma once
-#include <functional>
-
+#include "lgpch.h"
 #include "Lingod/Core.h"
 
 namespace Lingod {
@@ -47,10 +46,12 @@ namespace Lingod {
 		virtual int GetCategoryFlags() const = 0;
 		virtual std::string ToString() const { return GetName(); }
 
-		bool IsInCategory(EventCategory category)
+		inline virtual bool IsInCategory(EventCategory category)
 		{
 			return GetCategoryFlags() & category;
 		}
+	protected:
+		bool m_handled = false;
 	};
 
 	class EventDispatcher

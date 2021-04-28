@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Hazel/Events/Event.h"
-#include "Hazel/Core/MouseCodes.h"
+#include "Lingod/Events/Event.h"
 
-namespace Hazel {
+namespace Lingod {
 
 	class MouseMovedEvent : public Event
 	{
