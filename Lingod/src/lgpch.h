@@ -12,7 +12,6 @@
 #include <unordered_map>
 #include <unordered_set>
 
-
 #ifdef LG_PLAYFORM_WINDOWS
 	#include <Windows.h>
 #endif

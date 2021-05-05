@@ -5,6 +5,7 @@
 #include "Lingod/Core.h"
 #include "Lingod/Events/Event.h"
 #include "Lingod/Window.h"
+#include "glad/glad.h"
 #include <GLFW/glfw3.h>
 namespace Lingod
 {
@@ -23,7 +24,7 @@ namespace Lingod
 		void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
-		//virtual void* GetNativeWindow() const { return m_Window; }
+		virtual void* GetNativeWindow() const { return m_Window; }
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
@@ -42,5 +43,4 @@ namespace Lingod
 
 		WindowData m_Data;
 	};
-
 }

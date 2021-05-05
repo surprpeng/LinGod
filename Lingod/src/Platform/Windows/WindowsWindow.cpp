@@ -5,6 +5,7 @@
 #include "Lingod/Events/MouseEvent.h"
 #include "Lingod/Events/KeyEvent.h"
 
+
 namespace Lingod {
 
 	static uint8_t s_GLFWWindowCount = 0;
@@ -49,6 +50,10 @@ namespace Lingod {
 			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 			++s_GLFWWindowCount;
 			glfwMakeContextCurrent(m_Window);
+
+			int  status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+			LG_CORE_ASSERT(status, "Failed to initialize Glad!");
+
 			glfwSetWindowUserPointer(m_Window, &m_Data);
 			SetVSync(true);
 
@@ -150,7 +155,7 @@ namespace Lingod {
 
 	void WindowsWindow::OnUpdate()
 	{
-		//glfwPollEvents();
+		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}
 

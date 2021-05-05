@@ -4,3 +4,9 @@
 [submodule "Lingod/vendor/GLFW"]
 	path = Lingod/vendor/GLFW
 	url = https://github.com/TheCherno/glfw
+[submodule "Lingod/vendor/imgui"]
+	path = Lingod/vendor/imgui
+	url = https://github.com/TheCherno/imgui.git
+[submodule "Lingod/vendor/glm"]
+	path = Lingod/vendor/glm
+	url = https://github.com/g-truc/glm.git

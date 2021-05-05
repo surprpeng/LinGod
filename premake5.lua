@@ -7,20 +7,30 @@
 				"Release",
 				"Dist"
 			}
-		
+
+			startproject "Sandbox"
+
 			outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}" 
 			IncludeDir = {}
 			IncludeDir["GLFW"] = "Lingod/vendor/GLFW/include"
+			IncludeDir["glad"] = "Lingod/vendor/glad/include"
+			IncludeDir["imGUI"] = "Lingod/vendor/imGUI"
+			IncludeDir["glm"] = "Lingod/vendor/glm"
 
-			include "Lingod/vendor/GLFW"
+			group "Dependencies"
+				include "Lingod/vendor/GLFW"
+				include "Lingod/vendor/glad"
+				include "Lingod/vendor/imGUI"
+			group ""
 
+		
 
 		project "Lingod"          
 			location "Lingod"     
 			kind "SharedLib" 
 			language "C++"		
 			cppdialect "C++17"
-			staticruntime "on"
+			staticruntime "off"
 
 			targetdir ("bin/" .. outputdir .. "/%{prj.name}")      
 			objdir ("bin-int/" .. outputdir .. "/%{prj.name}")	
@@ -31,21 +41,29 @@
 			files               
 			{
 				"%{prj.name}/src/**.h",
-				"%{prj.name}/src/**.cpp"
-
+				"%{prj.name}/src/**.cpp",
+				"%{prj.name}/vendor/glm/glm/**.hpp",
+				"%{prj.name}/vendor/glm/glm/**.inl",
 			}
 
 			includedirs       
 			{
 				"%{prj.name}/vendor/spdlog/include",
 				"%{prj.name}/src",
-				"%{IncludeDir.GLFW}"
+				"%{IncludeDir.GLFW}",
+				"%{IncludeDir.glad}",
+				"%{IncludeDir.imGUI}",
+				"%{IncludeDir.glm}"
+
+
 			}
 
 
 			links
 			{
 				"GLFW",
+				"glad",
+				"imGUI",
 				"opengl32.lib"
 			}
 
@@ -53,39 +71,44 @@
 
 			filter "system:windows"   
 				cppdialect "C++17"    
-				staticruntime "on"    
+				staticruntime "off"  
 				systemversion "10.0"  
 
 				defines               
 				{
 					"LG_PLAYFORM_WINDOWS",
 					"LG_BUILD_DLL",
-					"_WINDLL"
+					"_WINDLL",
+					"GLFW_INCLUDE_NONE"
 				}
 				
 				postbuildcommands     
 				{
-					("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+					("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox"),
+					("{COPY} %{cfg.buildtarget.relpath}\" ../bin/" .. outputdir .. "/Sandbox\"")
 				}
 
 				filter "configurations:Debug" 
 					defines "LG_DEBUG"
-					symbols "On"     
+					staticruntime "off" 
+					symbols "on"     
 
 				filter "configurations:Release"
 					defines "LG_RELEASE"
-					optimize "On"   
+					staticruntime "off" 
+					optimize "on"   
 
 				filter "configurations:Dist"
 					defines "LG_DIST"
-					optimize "On"
+					staticruntime "off" 
+					optimize "on"
 
 
 project "Sandbox"         
 			location "Sandbox"     
 			kind "ConsoleApp"	  
 			language "C++"		
-			staticruntime "on"
+			staticruntime "off"
 
 
 			targetdir ("bin/" .. outputdir .. "/%{prj.name}")      
@@ -94,14 +117,16 @@ project "Sandbox"
 			files                
 			{
 				"%{prj.name}/src/**.h",
-				"%{prj.name}/src/**.cpp"
+				"%{prj.name}/src/**.cpp",
+
 			}
 
 			includedirs        
 			{
 				"Lingod/src",
-			"Lingod/vendor/spdlog/include",
-
+			    "Lingod/vendor/spdlog/include",
+				"Lingod/vendor/imGUI",
+				"%{IncludeDir.glm}"
 			}
 
 			links
@@ -110,7 +135,7 @@ project "Sandbox"
 			}
 			filter "system:windows"   
 				cppdialect "C++17"    
-				staticruntime "on"    
+				staticruntime "off"    
 				systemversion"10.0"  
 
 				defines              
@@ -120,12 +145,15 @@ project "Sandbox"
 				
 				filter "configurations:Debug" 
 					defines "LG_DEBUG"
-					symbols "On"       
+					staticruntime "off" 
+					symbols "on"       
 
 				filter "configurations:Release"
 					defines "LG_RELEASE"
-					optimize "On"   
+					staticruntime "off" 
+					optimize "on"   
 
 				filter "configurations:Dist"
 					defines "LG_DIST"
-					optimize "On"
+					staticruntime "off" 
+					optimize "on"
