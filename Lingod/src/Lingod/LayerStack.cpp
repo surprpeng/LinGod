@@ -1,6 +1,6 @@
 #include "lgpch.h"
 #include "Lingod/LayerStack.h"
-
+#include "Lingod/Layer.h"
 namespace Lingod {
 	LayerStack::LayerStack()
 	{
@@ -17,11 +17,13 @@ namespace Lingod {
 	{
 		m_Layers.emplace(m_Layers.begin() + m_LayerInsertIndex, layer);
 		m_LayerInsertIndex++;
+		layer->OnAttach();
 	}
 
 	void LayerStack::PushOverlay(Layer* overlay)
 	{
 		m_Layers.emplace_back(overlay);
+		overlay->OnAttach();
 	}
 
 	void LayerStack::PopLayer(Layer* layer)
@@ -31,6 +33,7 @@ namespace Lingod {
 		{
 			m_Layers.erase(it);
 			m_LayerInsertIndex--;
+			layer->OnDetach();
 		}
 	}
 
@@ -40,6 +43,8 @@ namespace Lingod {
 		if (it != m_Layers.end())
 		{
 			m_Layers.erase(it);
+			overlay->OnDetach();
+
 		}
 	}
 

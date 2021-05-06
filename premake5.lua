@@ -27,10 +27,10 @@
 
 		project "Lingod"          
 			location "Lingod"     
-			kind "SharedLib" 
+			kind "StaticLib" 
 			language "C++"		
 			cppdialect "C++17"
-			staticruntime "off"
+			staticruntime "on"
 
 			targetdir ("bin/" .. outputdir .. "/%{prj.name}")      
 			objdir ("bin-int/" .. outputdir .. "/%{prj.name}")	
@@ -46,6 +46,10 @@
 				"%{prj.name}/vendor/glm/glm/**.inl",
 			}
 
+			defines
+			{
+				"_CRT_SECURE_NO_WARNINGS"
+			}
 			includedirs       
 			{
 				"%{prj.name}/vendor/spdlog/include",
@@ -54,8 +58,6 @@
 				"%{IncludeDir.glad}",
 				"%{IncludeDir.imGUI}",
 				"%{IncludeDir.glm}"
-
-
 			}
 
 
@@ -70,37 +72,28 @@
 
 
 			filter "system:windows"   
-				cppdialect "C++17"    
-				staticruntime "off"  
-				systemversion "10.0"  
+				systemversion "latest"  
 
 				defines               
 				{
 					"LG_PLAYFORM_WINDOWS",
 					"LG_BUILD_DLL",
-					"_WINDLL",
 					"GLFW_INCLUDE_NONE"
 				}
 				
-				postbuildcommands     
-				{
-					("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox"),
-					("{COPY} %{cfg.buildtarget.relpath}\" ../bin/" .. outputdir .. "/Sandbox\"")
-				}
-
 				filter "configurations:Debug" 
 					defines "LG_DEBUG"
-					staticruntime "off" 
+					runtime "Debug"
 					symbols "on"     
 
 				filter "configurations:Release"
 					defines "LG_RELEASE"
-					staticruntime "off" 
+					runtime "Release"
 					optimize "on"   
 
 				filter "configurations:Dist"
 					defines "LG_DIST"
-					staticruntime "off" 
+					runtime "Release"
 					optimize "on"
 
 
@@ -108,8 +101,8 @@ project "Sandbox"
 			location "Sandbox"     
 			kind "ConsoleApp"	  
 			language "C++"		
-			staticruntime "off"
-
+			cppdialect "C++17"
+			staticruntime "on"
 
 			targetdir ("bin/" .. outputdir .. "/%{prj.name}")      
 			objdir ("bin-int/" .. outputdir .. "/%{prj.name}")		
@@ -125,7 +118,7 @@ project "Sandbox"
 			{
 				"Lingod/src",
 			    "Lingod/vendor/spdlog/include",
-				"Lingod/vendor/imGUI",
+				"Lingod/vendor",
 				"%{IncludeDir.glm}"
 			}
 
@@ -134,9 +127,7 @@ project "Sandbox"
 				"Lingod"
 			}
 			filter "system:windows"   
-				cppdialect "C++17"    
-				staticruntime "off"    
-				systemversion"10.0"  
+				systemversion"latest"  
 
 				defines              
 				{
@@ -145,15 +136,15 @@ project "Sandbox"
 				
 				filter "configurations:Debug" 
 					defines "LG_DEBUG"
-					staticruntime "off" 
+					runtime "Debug"
 					symbols "on"       
 
 				filter "configurations:Release"
 					defines "LG_RELEASE"
-					staticruntime "off" 
+					runtime "Release"
 					optimize "on"   
 
 				filter "configurations:Dist"
 					defines "LG_DIST"
-					staticruntime "off" 
+					runtime "Release"
 					optimize "on"

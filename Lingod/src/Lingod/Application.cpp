@@ -37,12 +37,12 @@ namespace Lingod{
 	void Application::PushLayer(Layer* Layer)
 	{
 		m_LayerStack.PushLayer(Layer);
-		Layer->OnAttach();
+
 	}
 	void Application::PushOverLayer(Layer* Layer)
 	{
 		m_LayerStack.PushOverlay(Layer);
-		Layer->OnAttach();
+
 	}
 
 

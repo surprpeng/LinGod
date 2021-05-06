@@ -1,13 +1,18 @@
 #pragma once
 #ifdef LG_PLAYFORM_WINDOWS
-	#ifdef LG_BUILD_DLL
-		#define  LG_API  _declspec(dllexport) 
+	#if 0
+		#ifdef LG_BUILD_DLL
+			#define  LG_API  _declspec(dllexport) 
+		#else
+			#define LG_API   _declspec(dllimport)
+		#endif
 	#else
-		#define LG_API   _declspec(dllimport)
+		#define LG_API 
 	#endif
 #else
 	#error Lingod only support window!
 #endif
+
 
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 #define BIT(x)  (1<<x)
